@@ -35,7 +35,8 @@ public class ConfigurationManager {
 
             Properties prop = new Properties();
             // String absolutePath = System.getProperty("user.dir");
-            String propFileName = "C:\\Users\\FNGUSER004\\IdeaProjects\\API-2021-SMTP\\src\\main\\java\\config\\config\\config.properties";
+            //String propFileName = "C:\\Users\\FNGUSER004\\IdeaProjects\\API-2021-SMTP\\src\\main\\java\\config\\config\\config.properties";
+            String propFileName = "C:\\Users\\magal\\Documents\\POO\\API-2021-Lab-SMTP\\src\\main\\java\\config<\\config\\config.properties";
 
             InputStream in = new FileInputStream(propFileName);
             prop.load(in);

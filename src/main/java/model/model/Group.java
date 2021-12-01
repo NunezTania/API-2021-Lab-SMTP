@@ -10,4 +10,8 @@ public class Group {
         return members;
     }
 
+    public void addMember(Person p){
+        this.members.add(p);
+    }
+
 }
