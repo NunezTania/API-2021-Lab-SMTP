@@ -35,8 +35,8 @@ public class ConfigurationManager {
 
             Properties prop = new Properties();
             // String absolutePath = System.getProperty("user.dir");
-            //String propFileName = "C:\\Users\\FNGUSER004\\IdeaProjects\\API-2021-SMTP\\src\\main\\java\\config\\config\\config.properties";
-            String propFileName = "C:\\Users\\magal\\Documents\\POO\\API-2021-Lab-SMTP\\src\\main\\java\\config<\\config\\config.properties";
+            String propFileName = "C:\\Users\\FNGUSER004\\IdeaProjects\\API-2021-SMTP\\src\\main\\java\\config\\config\\config.properties";
+            //String propFileName = "C:\\Users\\magal\\Documents\\POO\\API-2021-Lab-SMTP\\src\\main\\java\\config<\\config\\config.properties";
 
             InputStream in = new FileInputStream(propFileName);
             prop.load(in);
@@ -56,6 +56,7 @@ public class ConfigurationManager {
 
     public String[] getVictims() {
         try {
+            //String victimsFileName = "C:\\Users\\magal\\Documents\\POO\\API-2021-Lab-SMTP\\src\\main\\java\\config<\\config\\config.properties";
             String victimsFileName = "C:\\Users\\FNGUSER004\\IdeaProjects\\API-2021-SMTP\\src\\main\\java\\config\\config\\victims.utf8";
             BufferedReader buff = new BufferedReader(new InputStreamReader(new FileInputStream(victimsFileName), StandardCharsets.UTF_8));
             String line;
@@ -74,8 +75,9 @@ public class ConfigurationManager {
 
     public String[] getMessages() {
         try {
-            String victimsFileName = "C:\\Users\\FNGUSER004\\IdeaProjects\\API-2021-SMTP\\src\\main\\java\\config\\config\\messages.utf8";
-            BufferedReader buff = new BufferedReader(new InputStreamReader(new FileInputStream(victimsFileName), StandardCharsets.UTF_8));
+            //String messagesFileName = "C:\\Users\\magal\\Documents\\POO\\API-2021-Lab-SMTP\\src\\main\\java\\config<\\config\\config.properties";
+            String messagesFileName = "C:\\Users\\FNGUSER004\\IdeaProjects\\API-2021-SMTP\\src\\main\\java\\config\\config\\messages.utf8";
+            BufferedReader buff = new BufferedReader(new InputStreamReader(new FileInputStream(messagesFileName), StandardCharsets.UTF_8));
             String line;
             List<String> lines = new ArrayList<>();
             StringBuilder s = new StringBuilder();
