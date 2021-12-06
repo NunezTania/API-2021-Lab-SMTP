@@ -7,7 +7,7 @@ import java.util.*;
 public class ConfigurationManager {
     public static void main(String[] args) {
 
-        for (String s : new ConfigurationManager().getVictims()) {
+        for (String s : new ConfigurationManager().getMessages()) {
             System.out.println("\n");
             System.out.println(s);
         }
@@ -88,7 +88,9 @@ public class ConfigurationManager {
                 s.append("\n");
 
                 if (line.matches("--")) {
-                    lines.add(s.toString());
+                    String sAdd = s.toString();
+                    sAdd = sAdd.replaceAll("--", "");
+                    lines.add(sAdd);
                     s = new StringBuilder();
                 }
 
