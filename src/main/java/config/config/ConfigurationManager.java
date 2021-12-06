@@ -88,9 +88,7 @@ public class ConfigurationManager {
                 s.append("\n");
 
                 if (line.matches("--")) {
-                    String sAdd = s.toString();
-                    sAdd = sAdd.replaceAll("--", "");
-                    lines.add(sAdd);
+                    lines.add(s.toString().replaceAll("--", ""));
                     s = new StringBuilder();
                 }
 
