@@ -6,6 +6,8 @@ import model.model.Prank;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 public class SMTPclient {
     Socket socket;
@@ -86,10 +88,22 @@ public class SMTPclient {
 
 
             // ecrit le mail
+            String content = prank.getMessage();
+            StringBuilder message = new StringBuilder();
+            String subject = content.split(":")[1].split("\n")[0];
+            String body = content.substring(content. indexOf('\n')+1);
+            message.append("Subject: " + "=?utf-8?B?").append(Base64.getEncoder()
+                    .encodeToString(subject.getBytes(StandardCharsets.UTF_8))).append("?=").append("\r\n").append("\r\n");
+
+            out.write("Content-Type: text/plain; charset=utf-8\r\n");
             out.write("From :" + prank.getSender().getEmail() + "\r\n" );
 
+
+
+
             out.write("To :" + recepteur + "\r\n" );
-            out.write( prank.getMessage() + "\r\n" );
+            out.write(subject + "\r\n");
+            out.write( "Content-Type: text/plain; charset=utf-8" + body + "\r\n" );
             out.write("\r\n.\r\n");
             out.flush();
 
