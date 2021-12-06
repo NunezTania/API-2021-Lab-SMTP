@@ -15,8 +15,8 @@ public class Person {
     // permet de crée une personne a partir de son adresse email
     public Person(String email){
         this.email = email;
-        this.prenom = email.substring(0, email.lastIndexOf("."));
-        this.nom = email.substring(email.lastIndexOf("."), email.lastIndexOf("@"));
+        //this.prenom = email.substring(0, email.lastIndexOf("."));
+        //this.nom = email.substring(email.lastIndexOf("."), email.lastIndexOf("@"));
     }
 
     public String getPrenom(){

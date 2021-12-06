@@ -3,23 +3,34 @@ package model.model;
 import config.config.ConfigurationManager;
 import smtp.SMTPclient;
 
+import java.util.ArrayList;
+
 public class PrankGenerator {
 
     private ConfigurationManager manager;
 
+    public PrankGenerator(ConfigurationManager manager){
+        this.manager = manager;
+    }
 
     public Prank generatePranks() {
         String[] properties = manager.getProperties();
+        int nbGroup = Integer.parseInt(properties[2]);
+        String[] tabEmail = manager.getVictims();
+        int tailleGroup =  tabEmail.length / nbGroup ;
 
-        // TODO
-        // partie 1 : va chercher les info dans les config
-        // 1. la liste d'email victime
-        // 2. les messages
-        Person victim = new Person("magali.egger@heig-vd.ch");
-        Person sender = new Person("magali.egger@heig-vd.ch");
-        String message = "Hello\n Blabla bla. Voila \n Bye";
+        Group group = new Group();
+        Person sender = new Person(tabEmail[0]);
 
-        Prank p = new Prank(victim, sender, message);
+        for(int i = 1; i < tailleGroup; i++){
+            group.addMember(new Person(tabEmail[i]));
+        }
+
+        String[] msg = manager.getMessages();
+
+
+
+        Prank p = new Prank(group, sender, msg[0]);
         // liste de prank a crée et a envoyé a smtp
 
         return p;

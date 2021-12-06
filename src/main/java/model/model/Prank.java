@@ -3,16 +3,16 @@ package model.model;
 public class Prank {
 
     private Person sender;
-    private Person victim;
+    private Group victim;
     private String message;
 
-    public Prank(Person victim, Person sender, String txt){
+    public Prank(Group victim, Person sender, String txt){
         this.sender = sender;
         this.victim = victim;
         this.message = txt;
     }
 
-    public Person getVictim() {
+    public Group getVictim() {
         return victim;
     }
 

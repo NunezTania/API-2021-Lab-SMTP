@@ -1,6 +1,7 @@
 package smtp;
 
 import config.config.ConfigurationManager;
+import model.model.Person;
 import model.model.Prank;
 
 import java.io.*;
@@ -39,42 +40,55 @@ public class SMTPclient {
             if( !line.startsWith("250")){
                 throw new IOException(" Problem after EHLO");
             }
-            while(line.startsWith("250 ")){
+            while(line.startsWith("250-")){
                 line = in.readLine();
             }
             // ecrit seulement si a recu un 250 sans tiret
             // ecrit le vrai from
-            out.write("MAIL FROM: tania.nunez@heig-vd.ch\r\n");
+            out.write("MAIL FROM:"+ prank.getSender().getEmail() +"\r\n");
             out.flush();
 
             // lis ok
             line = in.readLine();
-            if( !(line == "250 OK")){
+            if(!line.startsWith("250")){
                 throw new IOException(" Problem with mail vrai from");
             }
-            // ecrit le vrai dest = victime
-            out.write("RCPT TO: " + prank.getVictim() + "\r\n");
-            out.flush();
 
-            // lis si ok
-            line = in.readLine();
-            if( !(line == "250 OK")){
-                throw new IOException(" Problem with mail vrai to");
+
+            StringBuilder recepteur = new StringBuilder();
+            for(Person s : prank.getVictim().getMembers()){
+            // ecrit le vrai dest = victime
+                recepteur.append(s.getEmail() + ",");
+                out.write("RCPT TO: " + s.getEmail() + "\r\n");
+                out.flush();
+                line = in.readLine();
+                if(!line.startsWith("250")){
+                    throw new IOException(" Problem with mail vrai to");
+                }
             }
 
+
+            //recepteur.deleteCharAt(recepteur.length()-1);
+
+
             // ecrit le data
-            out.write("DATA\r\n");
+            out.write("DATA ");
+            out.write("\r\n");
             out.flush();
 
             // lis si rep server ok
             line = in.readLine();
-            if( !line.startsWith("354")){
+
+            if(!line.startsWith("354")){
                 throw new IOException(" Problem after DATA");
             }
 
+
+
             // ecrit le mail
-            out.write("From :" + prank.getSender() + "\r\n" );
-            out.write("To :" + prank.getVictim() + "\r\n" );
+            out.write("From :" + prank.getSender().getEmail() + "\r\n" );
+
+            out.write("To :" + recepteur + "\r\n" );
             out.write( prank.getMessage() + "\r\n" );
             out.write("\r\n.\r\n");
             out.flush();
