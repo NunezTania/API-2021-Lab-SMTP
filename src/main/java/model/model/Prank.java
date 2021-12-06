@@ -2,10 +2,10 @@ package model.model;
 
 public class Prank {
 
-    private Person sender;
-    private Person witness;
-    private Group victim;
-    private String message;
+    private final Person sender;
+    private final Person witness;
+    private final Group victim;
+    private final String message;
 
     public Prank(Group victim, Person sender, Person witness, String txt){
         this.sender = sender;
