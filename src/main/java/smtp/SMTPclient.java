@@ -27,17 +27,14 @@ public class SMTPclient {
             out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
             in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
 
-            // lis le 1er msg server
             String line = in.readLine();
             if( !line.startsWith("220")){
                 throw new IOException(" Connection problems");
             }
-            // ecrit EHLO
             out.write("EHLO hi\r\n");
             out.flush();
 
-            // lis la rep server = liste des extension ...
-            // continue de lire tant que la rep contient pas 250 sans tiret
+
             line = in.readLine();
             if( !line.startsWith("250")){
                 throw new IOException(" Problem after EHLO");
@@ -45,12 +42,11 @@ public class SMTPclient {
             while(line.startsWith("250-")){
                 line = in.readLine();
             }
-            // ecrit seulement si a recu un 250 sans tiret
-            // ecrit le vrai from
+
+
             out.write("MAIL FROM:"+ prank.getSender().getEmail() +"\r\n");
             out.flush();
 
-            // lis ok
             line = in.readLine();
             if(!line.startsWith("250")){
                 throw new IOException(" Problem with mail vrai from");
@@ -59,7 +55,6 @@ public class SMTPclient {
 
             StringBuilder recepteur = new StringBuilder();
             for(Person s : prank.getVictim().getMembers()){
-            // ecrit le vrai dest = victime
                 recepteur.append(s.getEmail() + ",");
                 out.write("RCPT TO: " + s.getEmail() + "\r\n");
                 out.flush();
@@ -73,12 +68,10 @@ public class SMTPclient {
             //recepteur.deleteCharAt(recepteur.length()-1);
 
 
-            // ecrit le data
             out.write("DATA ");
             out.write("\r\n");
             out.flush();
 
-            // lis si rep server ok
             line = in.readLine();
 
             if(!line.startsWith("354")){
@@ -86,8 +79,6 @@ public class SMTPclient {
             }
 
 
-
-            // ecrit le mail
             String content = prank.getMessage();
             StringBuilder message = new StringBuilder();
             String subject = content.split(":")[1].split("\n")[0];
@@ -98,12 +89,10 @@ public class SMTPclient {
             out.write("Content-Type: text/plain; charset=utf-8\r\n");
             out.write("From :" + prank.getSender().getEmail() + "\r\n" );
 
-
-
-
             out.write("To :" + recepteur + "\r\n" );
-            out.write(subject + "\r\n");
-            out.write( "Content-Type: text/plain; charset=utf-8" + body + "\r\n" );
+            out.write("Cc :" + prank.getWitness().getEmail() + "\r\n");
+            out.write(message + "\r\n");
+            out.write( body + "\r\n" );
             out.write("\r\n.\r\n");
             out.flush();
 

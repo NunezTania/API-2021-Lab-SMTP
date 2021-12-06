@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Group {
 
-    private ArrayList<Person> members = new ArrayList<Person>();
+    private final ArrayList<Person> members = new ArrayList<>();
 
     public ArrayList<Person> getMembers() {
         return members;

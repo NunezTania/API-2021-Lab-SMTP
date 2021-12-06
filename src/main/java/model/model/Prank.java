@@ -11,6 +11,7 @@ public class Prank {
         this.sender = sender;
         this.victim = victim;
         this.message = txt;
+        this.witness = witness;
     }
 
     public Group getVictim() {
