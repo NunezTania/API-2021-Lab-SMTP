@@ -4,17 +4,22 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class ConfigurationManager {
-    public static void main(String[] args) {
+/**
+ * Class ConfigurationManager
+ * Permet de récupérer les paramètres de configuration dans les fichiers config.properties, messages.utf8 et
+ * victims.utf8 sous forme d'Array de String. Cette classe fournit trois fonction gérant ces fonctionnalités.
+ */
 
-        for (String s : new ConfigurationManager().getMessages()) {
-            System.out.println("\n");
-            System.out.println(s);
-        }
+public class ConfigurationManager {
+
+    public static void main(String[] args) {
 
     }
 
-    /* Retourne un tableau de String contenant les valeurs du config.properties */
+    /**
+     * Cette fonction récupère les paramètres de configuration
+     *  @return un tableau de String contenant les valeurs du config.properties
+     */
 
     public String[] getProperties() {
 
@@ -28,6 +33,12 @@ public class ConfigurationManager {
         return propsResult;
 
     }
+
+    /**
+     * Cette fonction récupère les paramètres de configuration
+     * @param s la propriété désirée
+     *  @return une String contenant la valeur désirée dans le fichier config.properties
+     */
 
     public String getProperty(String s) { // Champs qu'il y a dans config.properties
 
@@ -54,6 +65,11 @@ public class ConfigurationManager {
         return null;
     }
 
+    /**
+     * Cette fonction récupère les victimes à qui faire la Prank
+     *  @return un tableau de String contenant les emails des victimes
+     */
+
     public String[] getVictims() {
         try {
             //String victimsFileName = "C:\\Users\\magal\\Documents\\POO\\API-2021-Lab-SMTP\\src\\main\\java\\config<\\config\\config.properties";
@@ -72,6 +88,11 @@ public class ConfigurationManager {
         }
         return null;
     }
+
+    /**
+     * Cette fonction récupère les messages à envoyer aux victimes receptionnistes
+     *  @return un tableau de String contenant les messages à envoyer (Sujet et corps de message).
+     */
 
     public String[] getMessages() {
         try {
