@@ -7,15 +7,7 @@ public class App {
 
     public static void main(String[] argv){
         ConfigurationManager manager = new ConfigurationManager();
-
         PrankGenerator generator = new PrankGenerator(manager);
-        Prank prank = generator.generatePranks();
-
-        String[] s = manager.getProperties();
-        SMTPclient client = new SMTPclient("127.0.0.1",  Integer.parseInt(s[1]));
-        client.envoieMail(prank);
-
+        generator.generatePranks();
     }
-
-
 }
