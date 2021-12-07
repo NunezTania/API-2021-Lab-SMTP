@@ -65,9 +65,6 @@ public class SMTPclient {
             }
 
 
-            //recepteur.deleteCharAt(recepteur.length()-1);
-
-
             out.write("DATA ");
             out.write("\r\n");
             out.flush();

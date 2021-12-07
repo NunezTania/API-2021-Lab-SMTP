@@ -48,7 +48,7 @@ public class PrankGenerator {
         // crée la prank et l'envoie
         Random rand = new Random();
         Prank p = new Prank(group, sender, witness, msg[rand.nextInt(msg.length)]);
-        SMTPclient client = new SMTPclient("127.0.0.1", port);
+        SMTPclient client = new SMTPclient(properties[0], port);
         client.envoieMail(p);
 
     }
