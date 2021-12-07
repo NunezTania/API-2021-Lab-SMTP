@@ -3,7 +3,7 @@
 <p>Dans ce laboratoire nous avons implémenté une application permettant de faire des
 pranks à des personnes de votre choix. Il est possible de définir une liste d'emails
 qui seront les victimes de ces pranks. Notre application premettra de choisir un nombre
-de groupe à qui envoyer des pranks et communiquera avec un serveur mail Mockmock grâce
+de groupes à qui envoyer des pranks et communiquera avec un serveur mail Mockmock grâce
 au protocole SMTP.</p>
 
 ## Notre programme
@@ -22,7 +22,7 @@ que de groupes.</p>
 
 ## Docker
 <p>Par practicité, nous allons utiliser docker pour exécuter notre serveur en
-arrière-plan. Pour ceci nous avons du créer une image docker. Pour se faire,
+arrière-plan. Pour ceci nous avons du créer une image docker. Pour ce faire,
 il faut créer un Dockerfile au même endroit que le fichier .jar du serveur.
 Afin de dire à docker comment exécuter ce programme, les directives exécutives
 suivante doivent figurer dans le Dockerfile</p>
@@ -53,13 +53,15 @@ depuis un navigateur. Pour accéder aux mail il suffit d'aller sur localhost:828
 ## Utilisation
 <p>Tout d'abord, le serveur Mockmock doit être lancé au préalable sur Docker grâce à la
 commande run citée plus haut. Une fois le serveur lancé, il suffit de lancer le programme principal
-de la classe App et les Pranks s'enverront sur Mockmock.</p>
-<p>Les fichier de configuration se trouvent dans le package config.config et peuvent être modifié
+de la classe App et les Pranks s'enverront et apparaîtront sur Mockmock.</p>
+<p>Les fichiers de configuration se trouvent dans le package config.config et peuvent être modifiés
 à souhait si des victimes ou des messages sont à ajouter. À noter que l'introduction d'un email de 
 victime sans le caractère '@' ne sera pas pris en compte. Les messages dans le fichier messages.utf8, si
-il y en a plusieurs, doivent être séparés par les caractères "--"</p>
+il y en a plusieurs, doivent se terminer par les caractères "--". C'est grâce à ces caractères que le ConfigurationManager
+sépare les différents messages dans le fichier messages.utf8.</p>
 
 ## À améliorer
 <p>Nous n'avons pas passé beaucoup de temps sur les fichiers de configuration et leur syntaxe.
 Il s'agit d'un point qui peut être grandement amélioré afin de personnaliser mieux les messages et potentielles
-victimes.</p>
+victimes. Il en va de même pour la gestion des groupes et de leur nombre, nous avons décidé d'implémenter quelque chose de simple,
+ce qui génère parfois les même Pranks.</p>
