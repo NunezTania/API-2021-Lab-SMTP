@@ -49,6 +49,9 @@ docker run -d --rm --name mockmock -p 8282:8282 -p 25:25 mockmock
 
 <p>Il est important de mapper les ports correctement pour avoir accès à Mockmock
 depuis un navigateur. Pour accéder aux mail il suffit d'aller sur localhost:8282.</p>
+<p>Finalement pour arrêter le container il faut utiliser la commande :</p>
+
+docker stop mockmock
 
 ## Utilisation
 <p>Tout d'abord, le serveur Mockmock doit être lancé au préalable sur Docker grâce à la
@@ -59,6 +62,7 @@ de la classe App et les Pranks s'enverront et apparaîtront sur Mockmock.</p>
 victime sans le caractère '@' ne sera pas pris en compte. Les messages dans le fichier messages.utf8, si
 il y en a plusieurs, doivent se terminer par les caractères "--". C'est grâce à ces caractères que le ConfigurationManager
 sépare les différents messages dans le fichier messages.utf8.</p>
+<p>Une fois les pranks faites, arrêter le container docker et fermer l'application.</p>
 
 ## À améliorer
 <p>Nous n'avons pas passé beaucoup de temps sur les fichiers de configuration et leur syntaxe.
